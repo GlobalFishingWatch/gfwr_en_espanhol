@@ -2,7 +2,7 @@ library(gfwr)
 library(tidyr)
 library(dplyr)
 
-# Começamos com o help da funcao
+# Comencamos com o help da funcao
 # Uma busca simples
 # primeiro parametro é query
 
