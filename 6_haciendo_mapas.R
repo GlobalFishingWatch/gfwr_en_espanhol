@@ -74,7 +74,7 @@ peru_fisheff %>%
 # region_source = 'USER_SHAPEFILE',
 # region = mi_shape
 
-mi_shape <- sf::read_sf("data/HC_Galapagos_HighSeas.shp")
+mi_shape <- sf::read_sf("data/test_shape.shp")
 
 fishing_effort <- get_raster(spatial_resolution = 'LOW',
                              temporal_resolution = 'DAILY',
@@ -103,6 +103,6 @@ fishing_effort %>%
     colors = map_effort_light,
     na.value = NA,
     labels = scales::comma) +
-  labs(title = "Esfuerzo pesquero aparente en la Corriente de Humboldt",
+  labs(title = "Esfuerzo pesquero aparente en mi shape",
        fill = "Fishing hours") +
   map_theme
