@@ -2,7 +2,6 @@
 # vamos a continuar con el ejemplo que teníamos antes
 
 id_test2
-# "2ca1c3012-2271-15cd-ea08-2e536333f615"
 
 visitas_puerto <- get_event(event_type = "PORT_VISIT",
           vessels = "2ca1c3012-2271-15cd-ea08-2e536333f615",
@@ -42,7 +41,7 @@ gaps <- get_event(event_type = "GAP",
 View(gaps)
 gaps %>% unnest_wider(event_info) %>% View() # para ver la información de cada evento
 
-# da para filtrar por gaps intencionais
+# da para filtrar por gaps intencionales
 get_event(event_type = "GAP",
           vessels = c("e0c9823749264a129d6b47a7aabce377",
                       "8c7304226-6c71-edbe-0b63-c246734b3c01"),

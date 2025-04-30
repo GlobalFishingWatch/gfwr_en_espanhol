@@ -42,7 +42,7 @@ info_vessel$selfReportedInfo$ssvid
 
 # ver el index para entender cómo vesselid se agrupan juntos
 info_vessel$selfReportedInfo[, c("index", "vesselId")]
-# per el index son dos barcos, los tres primeros son uno y el cuarto es otro
+# pero el index son dos barcos, los tres primeros son uno y el cuarto es otro
 
 # View del objeto ayuda a ver:
 # diferente vesselId para cada segmento por fechas
@@ -102,3 +102,4 @@ get_vessel_info(search_type = "id", ids = id_test2)
 
 info_vessel$registryOwners
 info_vessel$selfReportedInfo
+
