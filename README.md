@@ -5,7 +5,7 @@
 Andrea Sánchez-Tapia  
 Rocío Joo
 
-## Estructura desde repositório
+## Estructura de este repositorio
 
 ```
 .
