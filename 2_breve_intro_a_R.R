@@ -1,61 +1,59 @@
-# R a linguagem e o programa vs RStudio o IDE - a interface de usuario. Tem outras maneiras de rodar R! RStudio é apenas uma, mas é uma das mais eficientes
+# R es un lenguaje y un programa vs RStudio que es una IDE - interface de usuario. Hay otra maneras de usar R. RStudio es una de las maneras más eficientes de hacerlo.
 
-# quatro paineis
+# Cuatro paneles
 
-# 1. scripts, arquivos de texto com extensao .R
+# 1. Scripts, archivos de texto con extensión .R
 
-# control + enter para mandar pro terminal abaixo
-# Se > quer dizer o terminal esta pronto
-# Se + quer dizer que ficou esperando pro ex. fechar algum parentese
+# control + enter para mandar las líneas al terminal abajo
+# Si aparece > quiere decir que el terminal está listo
+# Si aparece + quiere decir que se quedó esperando por ej. a que se cierre algún paréntesis
 2 + 2
-# 2. o terminal de R (Console)
-# um terminal do computador
 
-# 3. e 4. Com abas que dá para reorganizar (Tools > )Global Options > Pane Layout
-# Environment"Objetos guardados na memória
-# vc guarda objetos na memória com o comando <-
-# ex.
+# 2. en el terminal de R (Consola)
+# un terminal del computador
+
+# 3. e 4. Se pueden reorganizar los paneles yendo a Tools > Global Options > Pane Layout
+
+# Environment. Los objetos que se guardan en el environment consumen memoria.
 
 numero <- 3
-# deve aparecer numero e o valor 3 na aba environment.
+# debe aparecer número y el valor 3 en la pestaña environment.
 
-# Historia
+# History
 
-# pacotes - CRAN install.packages("xxx")
+# Instalar paquetes - CRAN install.packages("xxx")
 
 # Files
-# Um navegador de arquivos
+# Un navegador de archivos
 
 # Plots
-# onde vai aparecer os plots
+# Donde van a aparecer los plots
 
-# Help onde fica o help das funcoes e pacotes
-# o help vc chama com ? ou help()
-# Carrega os pacotes
+# Help
+# Donde aparece la documentación de las funciones y paquetes
+# Se puede invocar a la ayuda con ? o help()
+
+# Cargar paquetes
 library(gfwr)
 
-# o help
+# Usando help
 help("get_vessel_info")
 
-# DEVE APARECER NA ABA HELP
-# sempre na mesma estrutura
-# Descricao
-# Uso (os parametros, a ordem, e quais sao os valores predeterminados/default)
-# Argumentos uma explicacao do significado e algumas informacoes
-# Detalhes quando for necessário
-# Exemplos
-# da para rodar marcando ew executando ctrl enter
-# ou copia e cola
+# En la pestaña de help
+# La documentación de las funciones guarda una misma estructura
+# Descripción
+# Uso (los argumentos, el orden y cuáles son los valores predeterminados/default)
+#
+# Ejemplos
+# Se pueden correr seleccionando el texto y ejecutando ctrl enter o copiando y pegando
 
-# Lembre que quando criar objetos é necessario dar um nome e usar <-
-
-# eu estarei explicando os argumentos e o uso das funcoes sempre baseada no help.
+# Recuerde que para crear objetos es necesario darles un nombre y usar <-
 
 
-# Objetos em R
+# Objetos en R
 
-# Classes
-#numeros, caracteres, logico
+# Clases
+# números, caracteres, lógicos
 3
 "a"
 TRUE
@@ -65,13 +63,12 @@ class("a")
 class("3")
 class(TRUE)
 
-# tem outros como o integer:
+# hay otros como enteros (integer):
 3L
-class(3L) #numeros inteiros, nao vamos usar
+class(3L)
 
 
-
-# vetores sao criados concatenando com a funcao c()
+# los vectores son creados concatenando elementos con la función c()
 3
 
 c(3, 2, 1)
@@ -79,41 +76,41 @@ objeto <- c(3, 2, 1)
 class(objeto)
 is(objeto)
 
-# Se misturar caracteres, numerico e logico, o caracter vai ter predominancia sobre o numero e o logico
+# Si se mezclan en un vector caracteres, numérico y lógico, el caracter tendrá predominancia sobre el número y el lógico
 mix <- c(3, "a")
 class(mix)
 
-mix <- c(3, "a", TRUE) #se criar um objeto com o mesmo nome, vai apagar o anterior
-mix
-class(mix)
 
-# numerico vai ter predominancia sobre logico, TRUE = 1 FALSE = 0
+# lo numérico tendrá predominancia sobre lo lógico, TRUE = 1 FALSE = 0
 mix <- c(TRUE, 1)
 mix
 class(mix)
-
 
 mix <- c(FALSE, 1)
 mix
 class(mix)
 
-# Isto é importante porque os parametros das funcoes vao dizer que tipo de input
-# é esperado
-# Se a funcao fala Logical espera-se um TRUE ou FALSE
-# Se a funcao fala Numeric espera-se um numero. Isto é 3 e nao "3"
+# Esto es importante porque los argumentos de las funciones esperan input en formatos específicos
+# Si el help de la función dice que el argumento es lógico, se espera un TRUE o FALSE
+# Si el help de la función dice que el argumento es numérico, se espera un número. Por ejemplo un 3 y no un "3"
+
+# Por cierto, si se crea un objeto con el mismo nombre de uno que ya existe, va a reemplazar el anterior
+mix <- c(3, "a", TRUE)
+mix
+class(mix)
 
 
-#  Vetores com c()
-# Dataframes (tabelas) de varias maneiras. Vc pode criar uma tabela lendo um
-# arquivo de excel, por exemplo
-dataframe1 <- data.frame(variavel1 = "a",
-                         variavel2 = "b",
-                         variavel3 = "c")
+#  Vectores con c()
+# Dataframes (tablas) de varias maneras. }
+# Usted puede crear una tabla leyendo un archivo de excel, por ejemplo
+dataframe1 <- data.frame(variable1 = "a",
+                         variable2 = "b",
+                         variable3 = "c")
 dataframe1
 View(dataframe1)
 
-dataframe2 <- data.frame(variavel1 = c(1, 3, 4),
-                        variavel2 = c("b", "oi", 4),
-                        variavel3 = c(TRUE, TRUE, FALSE))
+dataframe2 <- data.frame(variable1 = c(1, 3, 4),
+                        variable2 = c("b", "oi", 4),
+                        variable3 = c(TRUE, TRUE, FALSE))
 dataframe2
-# nao precisa ser do mesmo tipo, cada coluna é um vetor.
+# las columnas no necesitan ser del mismo tipo, cada columna es un vector.

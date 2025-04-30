@@ -1,104 +1,98 @@
 library(gfwr)
 library(tmap)
 
-## Fishing effort/esforco de pesca ----
+## Esfuerzo de pesca
 
-# a gente pode fazer buscas para areas pre definidas (EEZ, areas marinhas protegidas MPA e RFMOs/Orops)
+# se pueden hacer búsquedas para áreas predefinidas (EEZ, areas marinas protegidas MPA e RFMOs/Orops)
 
-# vamos comecar pela EEZ brasileira
 ?get_raster()
 # region_source = "EEZ
 # region = um código!
 
 # a gente busca o código pelo get_region_id()
-get_region_id(region_name = "Brazil",
+get_region_id(region_name = "Peru",
               region_source = "EEZ")
-# O código é 8464
-
-#get_region_id(region_name = "Brazil",
-#              region_source = "EEZ")
-#fuzzy matching importante
-
-
-# entre janeiro e marco de 2023.
-brasil_fisheff <- get_raster(spatial_resolution = 'LOW',
-                             temporal_resolution = 'MONTHLY',
-                             start_date = '2023-01-01',
-                             end_date = '2023-04-01',
-                             region = 8464,
-                             region_source = 'EEZ',
-                             key = gfw_auth())
+#código 8432
+peru <- 8432
+# enero marzo de 2023.
+peru_fisheff <- get_raster(spatial_resolution = 'LOW',
+                           temporal_resolution = 'MONTHLY',
+                           start_date = '2023-01-01',
+                           end_date = '2023-04-01',
+                           region = peru,
+                           region_source = 'EEZ')
 # 524 timeout
-brasil_fisheff
-# colunas que voltam?
+peru_fisheff
+# Qué columnas tiene cada respuesta?
 # coordenadas, time range, vessel ids, apparent fishing hours
 
-# da para modificar a resolucao espacial, LOW = 0.1 grau, HIGH = 0.01 grau
-brasil_fisheff <- get_raster(spatial_resolution = 'HIGH',
+# LOW = 0.1 grau, HIGH = 0.01 grau
+peru_fisheff <- get_raster(spatial_resolution = 'HIGH',
                              temporal_resolution = 'MONTHLY',
                              start_date = '2023-01-01',
                              end_date = '2023-04-01',
-                             region = 8464,
-                             region_source = 'EEZ',
-                             key = gfw_auth())
-brasil_fisheff #volta muito mais informacao
+                             region = peru,
+                             region_source = 'EEZ')
+
+peru_fisheff # mucha más info
 
 
+# explorar cada  argumento
+#resolución
 
-# da para modificar a resolucao temporal
-# A coluna time range vai mostrar apenas ano, mes ou dia de ocorrencia
-brasil_fisheff <- get_raster(spatial_resolution = 'LOW',
-                             temporal_resolution = 'DAILY',
-                             start_date = '2021-01-01',
-                             end_date = '2021-10-01',
-                             region = 8464,
-                             region_source = 'EEZ',
-                             key = gfw_auth())
-brasil_fisheff
+# time range va a mostrar apenas el año, mes o día de ocurrencia
+peru_fisheff <- get_raster(spatial_resolution = 'LOW',
+                           temporal_resolution = 'DAILY',
+                           start_date = '2021-01-01',
+                           end_date = '2021-10-01',
+                           region = peru,
+                           region_source = 'EEZ')
+peru_fisheff
 
-# tambem tem como agrupar os resultados usando o parametro group_by
-# group_by = "VESSEL_ID" "GEARTYPE" and "FLAGANDGEARTYPE" vai devolver diferentes colunas
-brasil_fisheff <- get_raster(spatial_resolution = 'LOW',
+# agrupar resultados usando parametro group_by
+# group_by = "VESSEL_ID" "GEARTYPE" and "FLAGANDGEARTYPE"
+#todas las opciones van a devolver diferentes columnas
+
+peru_fisheff <- get_raster(spatial_resolution = 'LOW',
+                           temporal_resolution = 'MONTHLY',
+                           start_date = '2021-01-01',
+                           end_date = '2021-10-01',
+                           group_by = "VESSEL_ID",
+                           region = peru,
+                           region_source = 'EEZ'
+                           )
+peru_fisheff
+# vessel_ID da mucha más información!
+
+# tambien se puede filtrar y seleccionar
+
+ECU_en_PER <- get_raster(spatial_resolution = 'LOW',
                              temporal_resolution = 'MONTHLY',
                              start_date = '2021-01-01',
                              end_date = '2021-10-01',
                              group_by = "VESSEL_ID",
-                             region = 8464,
+                             filter_by = "flag IN ('ECU')",
+                             region = peru,
                              region_source = 'EEZ',
                              key = gfw_auth())
-View(brasil_fisheff)
-# vessel_ID dá muito mais informacao!
-table(brasil_fisheff$flag)
+ECU_en_PER
+table(ECU_en_PER$`Gear Type`)
 
-# tambem dá para filtrar e selecionar apenas uma parte do que nos interessa
-#como flag de pais relevante
-ARG_in_BRA <- get_raster(spatial_resolution = 'LOW',
-                             temporal_resolution = 'MONTHLY',
-                             start_date = '2021-01-01',
-                             end_date = '2021-10-01',
-                             group_by = "FLAGANDGEARTYPE",
-                             filter_by = "flag IN ('ARG')",
-                             region = 8464,
-                             region_source = 'EEZ',
-                             key = gfw_auth())
-ARG_in_BRA
-table(ARG_in_BRA$Geartype)
-
-# dá para filtrar localmente
+# para filtrar localmente
 library(dplyr)
-brasil_fisheff %>% filter(Flag == "ARG")
+peru_fisheff %>% filter(Flag == "ARG")
 
 
 
-# tem outras opcoes para obter códigos, como areas marinhas protegidas e OROPS/RFMOs
+# hay otras opciones para obtener códigos de áreas marinas protegidas y OROPS/RFMOs
 get_region_id(region_name = "Abrolhos", region_source = "MPA")
 
 
 
-# também dá para carregar uma área de interesse
-# um shapefile -> .shp
-# em R, o pacote que lê shapefiles é o sf
-# primeiro usar um shapefile pré carregado:
+# área de interés
+# shapefile -> .shp
+# paquete sf
+# shapefile de ejemplo:
 ?gfwr
 data(test_shape)
 
@@ -110,7 +104,7 @@ tm_borders()
 
 test_shape
 
-# é um objeto sf
+# un objeto sf
 #sf::read_sf()
 
 
