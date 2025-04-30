@@ -16,11 +16,6 @@ Rocío Joo
 ├── 5_get_raster.R
 ├── 6_haciendo_mapas.R
 ├── data
-│   ├── HC_Galapagos_HS.zip
-│   ├── HC_Galapagos_HighSeas.dbf
-│   ├── HC_Galapagos_HighSeas.prj
-│   ├── HC_Galapagos_HighSeas.shp
-│   └── HC_Galapagos_HighSeas.shx
 └── gfwr_espanhol.Rproj
 ```
 
