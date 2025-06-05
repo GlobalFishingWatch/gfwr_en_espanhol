@@ -4,6 +4,11 @@
 
 Andrea Sánchez-Tapia  
 Rocío Joo
+Equipo de Investigación e Innovación de Global Fishing Watch
+
+
+> [!IMPORTANT]  
+> Las diapositivas usadas para este seminario se encuentran [acá](https://docs.google.com/presentation/d/1_XGm-c_QomrC_-UnJwArN6mBZx_lFaXfran--_3ZJms/edit?usp=sharing).
 
 ## Estructura de este repositorio
 
